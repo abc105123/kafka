@@ -67,6 +67,7 @@ public final class KafkaMetricHistogram implements CompoundStat {
      */
     private final Function<String, MetricName> metricNameFactory;
     private final HdrHistogram hdrHistogram;
+    private final long highestTrackableValue;
 
     /**
      * Creates a new histogram with the purpose of tracking latency values. As such, the histogram
@@ -105,6 +106,7 @@ public final class KafkaMetricHistogram implements CompoundStat {
     ) {
         this.metricNameFactory = metricNameFactory;
         this.hdrHistogram = new HdrHistogram(highestTrackableValue, numberOfSignificantValueDigits);
+        this.highestTrackableValue = highestTrackableValue;
     }
 
     @Override
@@ -125,6 +127,6 @@ public final class KafkaMetricHistogram implements CompoundStat {
 
     @Override
     public void record(MetricConfig config, double value, long timeMs) {
-        hdrHistogram.record((long) value);
+        hdrHistogram.record(Math.min(highestTrackableValue, (long) value));
     }
 }
