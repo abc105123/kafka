@@ -68,9 +68,9 @@ public interface CoordinatorRuntimeMetrics extends AutoCloseable {
     void recordFlushTime(long durationMs);
 
     /**
-     * Record the flush time.
+     * Record the flush interval time.
      *
-     * @param durationMs The flush time in milliseconds.
+     * @param durationMs The flush interval time in milliseconds.
      */
     void recordFlushIntervalTime(long durationMs);
 
