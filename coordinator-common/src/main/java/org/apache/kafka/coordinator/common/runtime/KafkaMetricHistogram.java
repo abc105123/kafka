@@ -127,5 +127,6 @@ public final class KafkaMetricHistogram implements CompoundStat {
 
     @Override
     public void record(MetricConfig config, double value, long timeMs) {
-        hdrHistogram.record(Math.min(highestTrackableValue, (long) value));    }
+        hdrHistogram.record(Math.min(highestTrackableValue, (long) value));
+    }
 }
