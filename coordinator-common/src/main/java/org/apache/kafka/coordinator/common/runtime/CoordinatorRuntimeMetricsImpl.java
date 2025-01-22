@@ -293,7 +293,7 @@ public class CoordinatorRuntimeMetricsImpl implements CoordinatorRuntimeMetrics 
 
     @Override
     public void recordEventPurgatoryTime(long purgatoryTimeMs) {
-        eventPurgatoryTimeSensor.record(Math.min(MAX_LATENCY_MS, purgatoryTimeMs));
+        eventPurgatoryTimeSensor.record(purgatoryTimeMs);
     }
 
     @Override
